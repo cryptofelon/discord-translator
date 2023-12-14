@@ -21,16 +21,33 @@ const translationClient = new TranslationServiceClient({
 // s
 
 const CHANNEL_ID = process.env.DISCORD_CHANNEL_ID;
+
+
+const TEXPlanningBrazilChannels = [
+  // 
+  "1184967865762332692", // general
+  "1184967817146155049",  // requests
+  "1184967796313030667" // delivery
+
+]
+
+
+const isBrazilChannel = (channelId: string) => {
+  return TEXPlanningBrazilChannels.includes(channelId);
+}
+
+
 const SOURCE_LANG_EN = "en";
-const TARGET_LANG_FR = "fr";
+const TARGET_LANG_FR = "pt";
 const LOCATION = "global";
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user?.tag}!`);
 });
 
+
 client.on("messageCreate", async (msg: Message) => {
-  if (msg.channelId === CHANNEL_ID && !msg.author.bot) {
+  if (isBrazilChannel(msg.channelId) && !msg.author.bot) {
     try {
       console.log("Content to translate:", msg.content);
       const detectionRequest = {
