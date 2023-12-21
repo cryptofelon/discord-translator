@@ -27,7 +27,8 @@ const TEXPlanningBrazilChannels = [
   // 
   "1184967865762332692", // general
   "1184967817146155049",  // requests
-  "1184967796313030667" // delivery
+  "1184967796313030667", // delivery
+  "1187135295527849996" // cf server
 
 ]
 
@@ -59,6 +60,10 @@ client.on("messageCreate", async (msg: Message) => {
       const [detectionResponse] = await translationClient.detectLanguage(
         detectionRequest
       );
+
+      // TODO: If really wanting to use OpenAI credits,
+      // Build API translation request here
+      // Using above detection request
 
       console.log("Det res", detectionResponse);
       const sourceLangObj = detectionResponse?.languages;
